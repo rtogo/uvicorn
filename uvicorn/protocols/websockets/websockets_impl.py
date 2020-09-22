@@ -54,7 +54,11 @@ class WebSocketProtocol(websockets.WebSocketServerProtocol):
 
         self.ws_server = Server()
 
-        super().__init__(ws_handler=self.ws_handler, ws_server=self.ws_server)
+        super().__init__(
+            ws_handler=self.ws_handler,
+            ws_server=self.ws_server,
+            max_size=16*1024*1024,
+        )
 
     def connection_made(self, transport):
         self.connections.add(self)
